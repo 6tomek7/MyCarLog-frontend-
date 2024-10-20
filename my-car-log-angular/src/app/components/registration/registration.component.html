@@ -1,0 +1,57 @@
+<form
+  class="d-flex flex-column justify-content-center"
+  [formGroup]="myForm"
+  (ngSubmit)="onSubmit()"
+>
+  <h2 class="text-center my-2">Sign up</h2>
+  <div class="form d-flex flex-column justify-content-center container">
+    <label for="username">Username:</label>
+    <input
+      placeholder="Type your username"
+      type="text"
+      id="username"
+      formControlName="username"
+      class="form-control"
+    />
+
+    <label for="email">Email:</label>
+    <input
+      placeholder="Type your email"
+      type="text"
+      id="email"
+      formControlName="email"
+      class="form-control"
+    />
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input
+        placeholder="Type your password"
+        type="password"
+        id="password"
+        formControlName="password"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="passwordConfirmation">Confirm password:</label>
+      <input
+        type="password"
+        placeholder="Confirm your password"
+        id="passwordConfirmation"
+        formControlName="passwordConfirmation"
+        class="form-control"
+      />
+    </div>
+
+    <button
+      class="btn btn-danger my-2"
+      type="button"
+      type="submit"
+      [disabled]="myForm.invalid"
+    >
+      Register
+    </button>
+  </div>
+</form>

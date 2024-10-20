@@ -1,13 +1,17 @@
-import { WrongAdressComponent } from './components/wrong-adress/wrong-adress.component';
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-
 export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () =>
       import('./components/login/login.component').then(
         (c) => c.LoginComponent
+      ),
+  },
+  {
+    path: 'registration',
+    loadComponent: () =>
+      import('./components/registration/registration.component').then(
+        (c) => c.RegistrationComponent
       ),
   },
   {
