@@ -61,8 +61,17 @@ export class RegistrationComponent {
       email: this.email.value as string,
     };
 
-    this.userService.signUp(registrationDataModel).subscribe(() => {
-      this.router.navigate(['/home']);
+    this.userService.signUp(registrationDataModel).subscribe({
+      next: () => {
+        this.router.navigate(['/home']);
+      },
+      error: (err) => {
+        err.error.message === 'Username already exists' &&
+          this.username.setErrors({ alreadyExist: true });
+
+        err.error.message === 'Email already exists' &&
+          this.email.setErrors({ alreadyExist: true });
+      },
     });
   }
 }

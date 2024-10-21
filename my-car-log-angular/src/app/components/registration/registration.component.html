@@ -11,6 +11,9 @@
         formControlName="username"
         class="form-control"
       />
+      <mat-error *ngIf="username.errors?.['alreadyExist']">
+        Username already exist
+      </mat-error>
       <mat-error *ngIf="username.errors?.['maxlength']">
         Max length for username is {{ usernameValidators.maxLength }}
       </mat-error>
@@ -29,7 +32,12 @@
         formControlName="email"
         class="form-control"
       />
-      <mat-error> Invalid email </mat-error>
+      <mat-error *ngIf="!email.errors?.['alreadyExist']">
+        Invalid email
+      </mat-error>
+      <mat-error *ngIf="email.errors?.['alreadyExist']">
+        Email already exist
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="my-1" appearance="outline">
