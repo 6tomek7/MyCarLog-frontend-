@@ -1,55 +1,74 @@
-<form
-  class="d-flex flex-column justify-content-center"
-  [formGroup]="myForm"
-  (ngSubmit)="onSubmit()"
->
+<form class="d-flex flex-column justify-content-center" [formGroup]="myForm">
   <h2 class="text-center my-2">Sign up</h2>
   <div class="form d-flex flex-column justify-content-center container">
-    <label for="username">Username:</label>
-    <input
-      placeholder="Type your username"
-      type="text"
-      id="username"
-      formControlName="username"
-      class="form-control"
-    />
-
-    <label for="email">Email:</label>
-    <input
-      placeholder="Type your email"
-      type="text"
-      id="email"
-      formControlName="email"
-      class="form-control"
-    />
-
-    <div class="form-group">
-      <label for="password">Password:</label>
+    <mat-form-field class="my-1" appearance="outline">
+      <mat-label for="username">Username</mat-label>
       <input
+        matInput
+        placeholder="Type your username"
+        type="text"
+        id="username"
+        formControlName="username"
+        class="form-control"
+      />
+      <mat-error *ngIf="username.errors?.['maxlength']">
+        Max length for username is {{ usernameValidators.maxLength }}
+      </mat-error>
+      <mat-error *ngIf="username.errors?.['minlength']">
+        Min length for username is {{ usernameValidators.minLength }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="my-1" appearance="outline">
+      <mat-label for="email">Email</mat-label>
+      <input
+        matInput
+        placeholder="Type your email"
+        type="text"
+        id="email"
+        formControlName="email"
+        class="form-control"
+      />
+      <mat-error> Invalid email </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="my-1" appearance="outline">
+      <mat-label for="password">Password</mat-label>
+      <input
+        matInput
         placeholder="Type your password"
-        type="password"
         id="password"
         formControlName="password"
         class="form-control"
       />
-    </div>
 
-    <div class="form-group">
-      <label for="passwordConfirmation">Confirm password:</label>
+      <mat-error *ngIf="password.errors?.['maxlength']">
+        Max length for password is {{ passwordValidators.maxLength }}
+      </mat-error>
+      <mat-error *ngIf="password.errors?.['minlength']">
+        Min length for password is {{ passwordValidators.minLength }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="my-1" appearance="outline">
+      <mat-label for="passwordConfirmation">Confirm password</mat-label>
       <input
-        type="password"
+        matInput
         placeholder="Confirm your password"
         id="passwordConfirmation"
         formControlName="passwordConfirmation"
         class="form-control"
       />
-    </div>
+      <mat-error *ngIf="passwordConfirmation.errors?.['noMatch']"
+        >Passwords are not match</mat-error
+      >
+    </mat-form-field>
 
     <button
       class="btn btn-danger my-2"
       type="button"
-      type="submit"
       [disabled]="myForm.invalid"
+      (click)="onSubmit()"
     >
       Register
     </button>
