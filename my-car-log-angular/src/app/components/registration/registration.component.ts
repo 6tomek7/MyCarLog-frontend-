@@ -11,6 +11,7 @@ import { UserService } from '../../services/user.service';
 import { RegistrationDataModel } from '../../models/user/registrationData.model';
 import { CommonModule } from '@angular/common';
 import { confirmPasswordValidator } from '../../shared/validators/confirm-password.validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -51,7 +52,7 @@ export class RegistrationComponent {
     confirmPasswordValidator
   );
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   onSubmit() {
     const registrationDataModel: RegistrationDataModel = {
@@ -60,6 +61,8 @@ export class RegistrationComponent {
       email: this.email.value as string,
     };
 
-    this.userService.signUp(registrationDataModel).subscribe();
+    this.userService.signUp(registrationDataModel).subscribe(() => {
+      this.router.navigate(['/home']);
+    });
   }
 }
