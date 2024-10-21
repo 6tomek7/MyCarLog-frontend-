@@ -36,9 +36,10 @@ export class RegistrationComponent {
     Validators.required,
     Validators.minLength(this.passwordValidators.minLength),
     Validators.maxLength(this.passwordValidators.maxLength),
+    Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{1,}$/),
   ]);
   passwordConfirmation = new FormControl('', [Validators.required]);
-  email = new FormControl('', (Validators.required, Validators.email));
+  email = new FormControl('', [Validators.required, Validators.email]);
 
   myForm = new FormGroup(
     {

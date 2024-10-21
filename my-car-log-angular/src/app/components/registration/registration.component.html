@@ -42,6 +42,11 @@
         class="form-control"
       />
 
+      <mat-error
+        *ngIf="!password.errors?.['maxlength'] && !password.errors?.['minlength'] && password.errors?.['pattern']"
+      >
+        Password should contain one lowercas, one uppercase and special sign
+      </mat-error>
       <mat-error *ngIf="password.errors?.['maxlength']">
         Max length for password is {{ passwordValidators.maxLength }}
       </mat-error>
