@@ -1,1 +1,18 @@
-{}
+{
+  "top-bar": {
+    "sign-in": "Zaloguj się",
+    "sign-up": "Zarejestruj się"
+  },
+  "login": {
+    "sign-in": "Zaloguj się",
+    "username": "nazwa użytkownika",
+    "password": "hasło"
+  },
+  "registration": {
+    "sign-up": "Zarejestruj się",
+    "username": "nazwa użytkownika",
+    "password": "hasło",
+    "email": "email",
+    "confirm-password": "potwierdź hasło"
+  }
+}

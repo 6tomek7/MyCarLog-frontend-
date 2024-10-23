@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { Route, Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-top-bar',
   standalone: true,
-  imports: [MatIconModule, RouterModule],
+  imports: [MatIconModule, RouterModule, TranslocoDirective],
   templateUrl: './top-bar.component.html',
   styleUrl: './top-bar.component.scss',
 })

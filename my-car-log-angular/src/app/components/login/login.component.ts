@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ import { CommonModule } from '@angular/common';
     MatFormFieldModule,
     MatInputModule,
     CommonModule,
+    TranslocoDirective,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',

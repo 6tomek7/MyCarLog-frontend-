@@ -14,6 +14,7 @@ import { confirmPasswordValidator } from '../../shared/validators/confirm-passwo
 import { Router } from '@angular/router';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Subject, takeUntil } from 'rxjs';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-registration',
@@ -24,6 +25,7 @@ import { Subject, takeUntil } from 'rxjs';
     ReactiveFormsModule,
     CommonModule,
     MatProgressBarModule,
+    TranslocoDirective,
   ],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss',

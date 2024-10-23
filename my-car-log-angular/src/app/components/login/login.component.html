@@ -2,11 +2,12 @@
   class="d-flex flex-column justify-content-center"
   [formGroup]="myForm"
   (ngSubmit)="onSubmit()"
+  *transloco="let t; prefix: 'login'"
 >
-  <h2 class="text-center my-2">Sign in</h2>
+  <h2 class="text-center my-2">{{ t("sign-in") }}</h2>
   <div class="form d-flex flex-column justify-content-center container">
     <mat-form-field class="my-1" appearance="outline">
-      <mat-label for="login">Login:</mat-label>
+      <mat-label for="login">{{ t("username") }}</mat-label>
       <input
         matInput
         placeholder="Type your login"
@@ -19,7 +20,7 @@
     </mat-form-field>
 
     <mat-form-field class="my-1" appearance="outline">
-      <mat-label for="password">Password:</mat-label>
+      <mat-label for="password">{{ t("password") }}</mat-label>
       <input
         matInput
         placeholder="Type your password"
@@ -39,7 +40,7 @@
       type="submit"
       [disabled]="myForm.invalid"
     >
-      Submit
+      {{ t("sign-in") | uppercase }}
     </button>
   </div>
 </form>
