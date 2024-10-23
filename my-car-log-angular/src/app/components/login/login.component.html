@@ -1,29 +1,39 @@
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 <form
   class="d-flex flex-column justify-content-center"
   [formGroup]="myForm"
   (ngSubmit)="onSubmit()"
+  *transloco="let t; prefix: 'login'"
 >
-  <h2 class="text-center my-2">Sign in</h2>
+  <h2 class="text-center my-2">{{ t("sign-in") }}</h2>
   <div class="form d-flex flex-column justify-content-center container">
-    <label for="login">Login:</label>
-    <input
-      placeholder="Type your login"
-      type="text"
-      id="login"
-      formControlName="login"
-      class="form-control"
-    />
-
-    <div class="form-group">
-      <label for="password">Password:</label>
+    <mat-form-field class="my-1" appearance="outline">
+      <mat-label for="login">{{ t("username") }}</mat-label>
       <input
+        matInput
+        placeholder="Type your login"
+        type="text"
+        id="login"
+        formControlName="login"
+        class="form-control"
+      />
+      <mat-error *ngIf="login.errors?.['notExist']"> Wrong user </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="my-1" appearance="outline">
+      <mat-label for="password">{{ t("password") }}</mat-label>
+      <input
+        matInput
         placeholder="Type your password"
         type="password"
         id="password"
         formControlName="password"
         class="form-control"
       />
-    </div>
+      <mat-error *ngIf="password.errors?.['notMatch']">
+        Wrong password
+      </mat-error>
+    </mat-form-field>
 
     <button
       class="btn btn-success my-2"
@@ -31,7 +41,7 @@
       type="submit"
       [disabled]="myForm.invalid"
     >
-      Submit
+      {{ t("sign-in") | uppercase }}
     </button>
   </div>
 </form>

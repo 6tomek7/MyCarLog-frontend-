@@ -1,1 +1,18 @@
-{}
+{
+  "top-bar": {
+    "sign-in": "Sign in",
+    "sign-up": "Sign up"
+  },
+  "login": {
+    "sign-in": "Sign in",
+    "username": "username",
+    "password": "password"
+  },
+  "registration": {
+    "sign-up": "Sign up",
+    "username": "username",
+    "password": "password",
+    "email": "email",
+    "confirm-password": "confirm password"
+  }
+}

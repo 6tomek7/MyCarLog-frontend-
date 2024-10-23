@@ -1,0 +1,98 @@
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+<form
+  class="d-flex flex-column justify-content-center"
+  [formGroup]="myForm"
+  *transloco="let t; prefix: 'registration'"
+>
+  <h2 class="text-center my-2">{{ t("sign-up") }}</h2>
+  <div class="form d-flex flex-column justify-content-center container">
+    <mat-form-field class="my-1" appearance="outline">
+      <mat-label for="username">{{ t("username") }}</mat-label>
+      <input
+        matInput
+        placeholder="Type your username"
+        type="text"
+        id="username"
+        formControlName="username"
+        class="form-control"
+      />
+      <mat-error *ngIf="username.errors?.['alreadyExist']">
+        Username already exist
+      </mat-error>
+      <mat-error *ngIf="username.errors?.['maxlength']">
+        Max length for username is {{ usernameValidators.maxLength }}
+      </mat-error>
+      <mat-error *ngIf="username.errors?.['minlength']">
+        Min length for username is {{ usernameValidators.minLength }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="my-1" appearance="outline">
+      <mat-label for="email">{{ t("email") }}</mat-label>
+      <input
+        matInput
+        placeholder="Type your email"
+        type="text"
+        id="email"
+        formControlName="email"
+        class="form-control"
+      />
+      <mat-error *ngIf="!email.errors?.['alreadyExist']">
+        Invalid email
+      </mat-error>
+      <mat-error *ngIf="email.errors?.['alreadyExist']">
+        Email already exist
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="my-1" appearance="outline">
+      <mat-label for="password">{{ t("password") }}</mat-label>
+      <input
+        matInput
+        type="password"
+        placeholder="Type your password"
+        id="password"
+        formControlName="password"
+        class="form-control"
+      />
+
+      <mat-error
+        *ngIf="!password.errors?.['maxlength'] && !password.errors?.['minlength'] && password.errors?.['pattern']"
+      >
+        Password should contain one lowercas, one uppercase and special sign
+      </mat-error>
+      <mat-error *ngIf="password.errors?.['maxlength']">
+        Max length for password is {{ passwordValidators.maxLength }}
+      </mat-error>
+      <mat-error *ngIf="password.errors?.['minlength']">
+        Min length for password is {{ passwordValidators.minLength }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="my-1" appearance="outline">
+      <mat-label for="passwordConfirmation">{{
+        t("confirm-password")
+      }}</mat-label>
+      <input
+        matInput
+        type="password"
+        placeholder="Confirm your password"
+        id="passwordConfirmation"
+        formControlName="passwordConfirmation"
+        class="form-control"
+      />
+      <mat-error *ngIf="passwordConfirmation.errors?.['noMatch']"
+        >Passwords are not match</mat-error
+      >
+    </mat-form-field>
+
+    <button
+      class="btn btn-danger my-2"
+      type="button"
+      [disabled]="myForm.invalid"
+      (click)="onSubmit()"
+    >
+      {{ t("sign-up") | uppercase }}
+    </button>
+  </div>
+</form>

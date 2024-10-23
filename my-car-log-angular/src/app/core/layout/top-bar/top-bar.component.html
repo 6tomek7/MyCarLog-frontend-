@@ -1,12 +1,18 @@
-<nav class="navbar border-bottom navbar-light">
-  <div class="container d-flex aling-items-center">
-    <a routerLink="home" class="navbar-brand d-flex aling-items-center">
-      My <mat-icon> directions_car</mat-icon> log</a
-    >
+<ng-container *transloco="let t; prefix: 'top-bar'">
+  <nav class="navbar border-bottom navbar-light">
+    <div class="container d-flex aling-items-center">
+      <a routerLink="home" class="navbar-brand d-flex aling-items-center">
+        My <mat-icon> directions_car</mat-icon> log</a
+      >
 
-    <div class="d-flex">
-      <button routerLink="login" class="btn btn-secondary">Sign in</button>
-      <button class="btn btn-primary">Sign up</button>
+      <div class="d-flex">
+        <button routerLink="login" class="btn btn-secondary">
+          {{ t("sign-in") }}
+        </button>
+        <button routerLink="registration" class="btn btn-primary">
+          {{ t("sign-up") }}
+        </button>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</ng-container>
