@@ -5,7 +5,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { UserService } from '../../services/user.service';
 import { LoginModel } from '../../models/user/login.model';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -13,6 +12,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { AuthService } from '../../core/authentication/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +37,7 @@ export class LoginComponent {
     login: this.login,
     password: this.password,
   });
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
     const login: LoginModel = {
@@ -47,16 +47,15 @@ export class LoginComponent {
 
     this.loading = true;
 
-    this.userService.signIn(login).subscribe({
+    this.authService.login(login).subscribe({
       next: () => {
         this.router.navigate(['/home']);
+        this.loading = false;
       },
       error: (err) => {
         err.error.message === 'Invalid password'
           ? this.password.setErrors({ notMatch: true })
           : this.login.setErrors({ notExist: true });
-      },
-      complete: () => {
         this.loading = false;
       },
     });
