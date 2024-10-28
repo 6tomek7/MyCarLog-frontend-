@@ -1,7 +1,8 @@
 {
   "top-bar": {
     "sign-in": "Sign in",
-    "sign-up": "Sign up"
+    "sign-up": "Sign up",
+    "logout": "Logout"
   },
   "login": {
     "sign-in": "Sign in",

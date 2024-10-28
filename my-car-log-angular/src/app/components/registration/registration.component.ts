@@ -7,7 +7,6 @@ import {
 } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { UserService } from '../../services/user.service';
 import { RegistrationDataModel } from '../../models/user/registrationData.model';
 import { CommonModule } from '@angular/common';
 import { confirmPasswordValidator } from '../../shared/validators/confirm-password.validator';
@@ -15,6 +14,7 @@ import { Router } from '@angular/router';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Subject, takeUntil } from 'rxjs';
 import { TranslocoDirective } from '@jsverse/transloco';
+import { AuthService } from '../../core/authentication/auth.service';
 
 @Component({
   selector: 'app-registration',
@@ -60,7 +60,7 @@ export class RegistrationComponent implements OnDestroy {
     confirmPasswordValidator
   );
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnDestroy(): void {
     this.ngUnsubscribe.next({});
@@ -76,7 +76,7 @@ export class RegistrationComponent implements OnDestroy {
 
     this.loading = true;
 
-    this.userService
+    this.authService
       .signUp(registrationDataModel)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
@@ -91,9 +91,6 @@ export class RegistrationComponent implements OnDestroy {
 
           err.error.message === 'Email already exists' &&
             this.email.setErrors({ alreadyExist: true });
-        },
-        complete: () => {
-          this.loading = false;
         },
       });
   }

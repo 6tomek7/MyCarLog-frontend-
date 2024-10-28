@@ -5,7 +5,7 @@
         My <mat-icon> directions_car</mat-icon> log</a
       >
 
-      <div class="d-flex">
+      <div *ngIf="!isLoggedIn" class="d-flex">
         <select [(ngModel)]="selectedLanguage" (change)="changeLanguage()">
           <option value="en">EN</option>
           <option value="pl">PL</option>
@@ -16,6 +16,17 @@
         <button routerLink="registration" class="btn btn-primary">
           {{ t("sign-up") }}
         </button>
+      </div>
+
+      <div *ngIf="isLoggedIn" class="d-flex">
+        <button
+          routerLink="login"
+          class="btn btn-secondary"
+          (click)="onLogout()"
+        >
+          {{ t("logout") }}
+        </button>
+        <a>{{ username }}</a>
       </div>
     </div>
   </nav>
