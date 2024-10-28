@@ -2,7 +2,8 @@
   "top-bar": {
     "sign-in": "Sign in",
     "sign-up": "Sign up",
-    "logout": "Logout"
+    "logout": "Logout",
+    "settings": "Settings"
   },
   "login": {
     "sign-in": "Sign in",

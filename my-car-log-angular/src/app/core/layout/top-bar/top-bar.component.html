@@ -19,14 +19,13 @@
       </div>
 
       <div *ngIf="isLoggedIn" class="d-flex">
-        <button
-          routerLink="login"
-          class="btn btn-secondary"
-          (click)="onLogout()"
-        >
-          {{ t("logout") }}
-        </button>
-        <a>{{ username }}</a>
+        <button mat-button [matMenuTriggerFor]="menu">{{ username }}</button>
+        <mat-menu #menu="matMenu">
+          <button (click)="goToUserDetails()" mat-menu-item>
+            {{ t("settings") }}
+          </button>
+          <button (click)="onLogout()" mat-menu-item>{{ t("logout") }}</button>
+        </mat-menu>
       </div>
     </div>
   </nav>
