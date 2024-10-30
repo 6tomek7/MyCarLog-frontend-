@@ -23,9 +23,9 @@ export const routes: Routes = [
   {
     path: 'settings',
     loadComponent: () =>
-      import(
-        './components/user-settings/user-settings/user-settings.component'
-      ).then((c) => c.UserSettingsComponent),
+      import('./components/user-settings/user-settings.component').then(
+        (c) => c.UserSettingsComponent
+      ),
     canActivate: [AuthGuard],
   },
   {

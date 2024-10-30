@@ -21,7 +21,8 @@ export class AuthService {
       tap((userAuth) => {
         this.setToken(userAuth.token),
           this.setUsername(userAuth.username),
-          this.loggedIn.next(true);
+          this.setUserId(userAuth.id);
+        this.loggedIn.next(true);
       })
     );
   }
@@ -32,6 +33,8 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('id');
     this.router.navigate(['/home']);
     this.loggedIn.next(false);
   }
@@ -48,12 +51,20 @@ export class AuthService {
     localStorage.setItem('username', username);
   }
 
+  private setUserId(userId: number): void {
+    localStorage.setItem('id', userId.toString());
+  }
+
   getToken(): string | null {
     return localStorage.getItem('token');
   }
 
   getUsername(): string | null {
     return localStorage.getItem('username');
+  }
+
+  getUserId(): string | null {
+    return localStorage.getItem('id');
   }
 
   hasToken(): boolean {
