@@ -1,1 +1,22 @@
-<p>general-settings works!</p>
+<div class="container box" *transloco="let t; prefix: 'general-settings'">
+  <div class="row">
+    <div class="col">{{ t("username") }}</div>
+    <div class="col">Some name</div>
+  </div>
+  <div class="row">
+    <div class="col">{{ t("email") }}</div>
+    <div class="col">tototyajaknietytokto</div>
+  </div>
+  <div class="row">
+    <div class="col">{{ t("language") }}</div>
+    <div class="col">
+      <app-language-option></app-language-option>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">{{ t("dark-mode") }}</div>
+    <div class="col">
+      <p><mat-slide-toggle></mat-slide-toggle></p>
+    </div>
+  </div>
+</div>

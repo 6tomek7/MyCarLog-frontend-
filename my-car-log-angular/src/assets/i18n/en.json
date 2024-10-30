@@ -16,5 +16,11 @@
     "password": "password",
     "email": "email",
     "confirm-password": "confirm password"
+  },
+  "general-settings": {
+    "username": "username",
+    "email": "email",
+    "language": "language",
+    "dark-mode": "dark mode"
   }
 }
