@@ -21,6 +21,13 @@ export const routes: Routes = [
       import('./components/home/home.component').then((c) => c.HomeComponent),
   },
   {
+    path: 'password-change',
+    loadComponent: () =>
+      import('./components/password-change/password-change.component').then(
+        (c) => c.PasswordChangeComponent
+      ),
+  },
+  {
     path: 'settings',
     loadComponent: () =>
       import('./components/user-settings/user-settings.component').then(

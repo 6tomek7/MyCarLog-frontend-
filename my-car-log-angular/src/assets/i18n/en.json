@@ -1,17 +1,17 @@
 {
   "top-bar": {
-    "sign-in": "Sign in",
-    "sign-up": "Sign up",
-    "logout": "Logout",
-    "settings": "Settings"
+    "sign-in": "sign in",
+    "sign-up": "sign up",
+    "logout": "logout",
+    "settings": "settings"
   },
   "login": {
-    "sign-in": "Sign in",
+    "sign-in": "sign in",
     "username": "username",
     "password": "password"
   },
   "registration": {
-    "sign-up": "Sign up",
+    "sign-up": "sign up",
     "username": "username",
     "password": "password",
     "email": "email",
@@ -26,5 +26,13 @@
   "security-settings": {
     "password": "password",
     "change-password": "change password"
+  },
+  "password-change": {
+    "password-change": "password change",
+    "new-password": "new password",
+    "old-password": "old password",
+    "wrong-password": "wrong password",
+    "confirm-password": "confirm password",
+    "update-password": "update password"
   }
 }
