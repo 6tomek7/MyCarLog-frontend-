@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment';
 import { LoginModel } from '../../models/user/login.model';
 import { UserAuth } from '../../models/user/userAuth.model';
 import { RegistrationDataModel } from '../../models/user/registrationData.model';
+import { UserNewPasswordModel } from '../../models/user/user-new-password.model';
 
 @Injectable({
   providedIn: 'root',
@@ -39,8 +40,17 @@ export class AuthService {
     this.loggedIn.next(false);
   }
 
-  updatePassword(passwords: any): Observable<any> {
-    return this.http.put<any>(`${this.url}`, {});
+  updatePassword(data: UserNewPasswordModel): Observable<UserAuth> {
+    return this.http
+      .put<UserAuth>(`${this.url}/auth/update-password`, data)
+      .pipe(
+        tap((userAuth) => {
+          this.setToken(userAuth.token),
+            this.setUsername(userAuth.username),
+            this.setUserId(userAuth.id);
+          this.loggedIn.next(true);
+        })
+      );
   }
 
   get isLoggedIn(): Observable<boolean> {

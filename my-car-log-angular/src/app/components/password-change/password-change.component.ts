@@ -13,6 +13,7 @@ import { TranslocoDirective } from '@jsverse/transloco';
 import { Router } from '@angular/router';
 import { confirmPasswordValidator } from '../../shared/validators/confirm-password.validator';
 import { AuthService } from '../../core/authentication/auth.service';
+import { UserNewPasswordModel } from '../../models/user/user-new-password.model';
 
 @Component({
   selector: 'app-password-change',
@@ -56,9 +57,13 @@ export class PasswordChangeComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
-    const passwords = {};
-
     this.loading = true;
+
+    const passwords = new UserNewPasswordModel(
+      localStorage.getItem('username') as string,
+      this.oldPassword.value as string,
+      this.password.value as string
+    );
 
     this.authService.updatePassword(passwords).subscribe({
       next: () => {
