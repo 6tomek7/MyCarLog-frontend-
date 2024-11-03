@@ -1,1 +1,40 @@
-<p>additional-settings works!</p>
+<form
+  [formGroup]="form"
+  class="container box"
+  *transloco="let t; prefix: 'additional-settings'"
+>
+  <div class="row">
+    <div class="col">{{ t("birthday") }}</div>
+    <div class="col">
+      <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">{{ t("gender") }}</div>
+    <div class="col">
+      <select id="gender" formControlName="gender">
+        <option value="" disabled selected>Select</option>
+        <option *ngFor="let gender of genders" [value]="gender">
+          {{ gender }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">{{ t("country") }}</div>
+    <div class="col">
+      <select id="country" formControlName="country">
+        <option *ngFor="let country of countries">{{ country }}</option>
+        <option value="" disabled selected>Select</option>
+      </select>
+    </div>
+  </div>
+</form>
