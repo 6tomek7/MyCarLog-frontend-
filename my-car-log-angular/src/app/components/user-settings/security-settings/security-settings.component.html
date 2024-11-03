@@ -1,1 +1,8 @@
-<p>security-settings works!</p>
+<div class="container box" *transloco="let t; prefix: 'security-settings'">
+  <div class="row">
+    <div class="col">{{ t("password") }}</div>
+    <div class="col">
+      <button>{{ t("change-password") }}</button>
+    </div>
+  </div>
+</div>
