@@ -16,8 +16,4 @@ export class UserService {
     const userId = localStorage.getItem('id');
     return this.http.get<UserDetailsModel>(`${this.url}/user/${userId}`);
   }
-
-  updatePassword(passwords: any): Observable<any> {
-    return this.http.put<any>(`${this.url}`, {});
-  }
 }

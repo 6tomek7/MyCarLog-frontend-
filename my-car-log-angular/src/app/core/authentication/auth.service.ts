@@ -39,6 +39,10 @@ export class AuthService {
     this.loggedIn.next(false);
   }
 
+  updatePassword(passwords: any): Observable<any> {
+    return this.http.put<any>(`${this.url}`, {});
+  }
+
   get isLoggedIn(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }
