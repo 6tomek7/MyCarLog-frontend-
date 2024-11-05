@@ -34,5 +34,11 @@
     "wrong-password": "wrong password",
     "confirm-password": "confirm password",
     "update-password": "update password"
+  },
+  "user-settings": {
+    "settings": "settings",
+    "general": "general",
+    "security": "security",
+    "additional": "additional"
   }
 }
