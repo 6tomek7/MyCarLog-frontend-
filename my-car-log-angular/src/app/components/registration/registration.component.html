@@ -9,20 +9,19 @@
       <mat-label for="username">{{ t("username") }}</mat-label>
       <input
         matInput
-        placeholder="Type your username"
         type="text"
         id="username"
         formControlName="username"
         class="form-control"
       />
       <mat-error *ngIf="username.errors?.['alreadyExist']">
-        Username already exist
+        {{ t("username-already-exist") }}
       </mat-error>
       <mat-error *ngIf="username.errors?.['maxlength']">
-        Max length for username is {{ usernameValidators.maxLength }}
+        {{ t("max-length-for-username") }} {{ usernameValidators.maxLength }}
       </mat-error>
       <mat-error *ngIf="username.errors?.['minlength']">
-        Min length for username is {{ usernameValidators.minLength }}
+        {{ t("min-length-for-username") }} {{ usernameValidators.minLength }}
       </mat-error>
     </mat-form-field>
 
@@ -30,17 +29,16 @@
       <mat-label for="email">{{ t("email") }}</mat-label>
       <input
         matInput
-        placeholder="Type your email"
         type="text"
         id="email"
         formControlName="email"
         class="form-control"
       />
       <mat-error *ngIf="!email.errors?.['alreadyExist']">
-        Invalid email
+        {{ t("invalid-email") }}
       </mat-error>
       <mat-error *ngIf="email.errors?.['alreadyExist']">
-        Email already exist
+        {{ t("email-already-exist") }}
       </mat-error>
     </mat-form-field>
 
@@ -49,7 +47,6 @@
       <input
         matInput
         type="password"
-        placeholder="Type your password"
         id="password"
         formControlName="password"
         class="form-control"
@@ -58,13 +55,13 @@
       <mat-error
         *ngIf="!password.errors?.['maxlength'] && !password.errors?.['minlength'] && password.errors?.['pattern']"
       >
-        Password should contain one lowercas, one uppercase and special sign
+        {{ t("password-pattern") }}
       </mat-error>
       <mat-error *ngIf="password.errors?.['maxlength']">
-        Max length for password is {{ passwordValidators.maxLength }}
+        {{ t("max-length-for-password") }}{{ passwordValidators.maxLength }}
       </mat-error>
       <mat-error *ngIf="password.errors?.['minlength']">
-        Min length for password is {{ passwordValidators.minLength }}
+        {{ t("min-length-for-password") }}{{ passwordValidators.minLength }}
       </mat-error>
     </mat-form-field>
 
@@ -75,14 +72,13 @@
       <input
         matInput
         type="password"
-        placeholder="Confirm your password"
         id="passwordConfirmation"
         formControlName="passwordConfirmation"
         class="form-control"
       />
-      <mat-error *ngIf="passwordConfirmation.errors?.['noMatch']"
-        >Passwords are not match</mat-error
-      >
+      <mat-error *ngIf="passwordConfirmation.errors?.['noMatch']">{{
+        t("passwords-are-not-match")
+      }}</mat-error>
     </mat-form-field>
 
     <button

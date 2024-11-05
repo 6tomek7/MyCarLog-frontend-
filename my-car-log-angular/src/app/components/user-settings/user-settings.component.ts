@@ -30,9 +30,18 @@ export class UserSettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserDetails();
+    this.updateUserDetails();
+  }
+
+  updateUserDetails() {
+    this.userService.updatedUserDetails.asObservable().subscribe(() => {
+      this.getUserDetails();
+    });
   }
 
   private getUserDetails(): void {
+    console.log('jol jol dupa');
+
     this.userService.getUserDetails().subscribe((res) => {
       res = this.userDetails as UserDetailsModel;
     });

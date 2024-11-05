@@ -7,7 +7,7 @@
     <div class="col">{{ t("birthday") }}</div>
     <div class="col">
       <mat-form-field>
-        <mat-label>Choose a date</mat-label>
+        <mat-label>{{ t("choose-a-date") }}</mat-label>
         <input matInput [matDatepicker]="picker" />
         <mat-datepicker-toggle
           matIconSuffix
@@ -21,7 +21,7 @@
     <div class="col">{{ t("gender") }}</div>
     <div class="col">
       <select id="gender" formControlName="gender">
-        <option value="" disabled selected>Select</option>
+        <option value="" disabled selected>{{ t("select") }}</option>
         <option *ngFor="let gender of genders" [value]="gender">
           {{ gender }}
         </option>
@@ -33,7 +33,7 @@
     <div class="col">
       <select id="country" formControlName="country">
         <option *ngFor="let country of countries">{{ country }}</option>
-        <option value="" disabled selected>Select</option>
+        <option value="" disabled selected>{{ t("select") }}</option>
       </select>
     </div>
   </div>

@@ -10,27 +10,27 @@
       <mat-label for="login">{{ t("username") }}</mat-label>
       <input
         matInput
-        placeholder="Type your login"
         type="text"
         id="login"
         formControlName="login"
         class="form-control"
       />
-      <mat-error *ngIf="login.errors?.['notExist']"> Wrong user </mat-error>
+      <mat-error *ngIf="login.errors?.['notExist']"
+        >{{ t("wrong-user") }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="my-1" appearance="outline">
       <mat-label for="password">{{ t("password") }}</mat-label>
       <input
         matInput
-        placeholder="Type your password"
         type="password"
         id="password"
         formControlName="password"
         class="form-control"
       />
       <mat-error *ngIf="password.errors?.['notMatch']">
-        Wrong password
+        {{ t("wrong-password") }}
       </mat-error>
     </mat-form-field>
 
