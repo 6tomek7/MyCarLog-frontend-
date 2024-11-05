@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
-import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
+import { TranslocoDirective } from '@jsverse/transloco';
 import { AuthService } from '../../authentication/auth.service';
 import { CommonModule } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { LanguageOptionComponent } from '../../language-option/language-option.component';
 
 @Component({
   selector: 'app-top-bar',
@@ -19,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     MatButtonModule,
     MatMenuModule,
+    LanguageOptionComponent,
   ],
   templateUrl: './top-bar.component.html',
   styleUrl: './top-bar.component.scss',
@@ -26,19 +28,10 @@ import { MatButtonModule } from '@angular/material/button';
 export class TopBarComponent implements OnInit {
   isLoggedIn: boolean = false;
   username: string | null = '';
-  selectedLanguage = 'pl';
-  constructor(
-    private translocoService: TranslocoService,
-    private authService: AuthService,
-    private router: Router
-  ) {}
-  ngOnInit(): void {
-    this.changeLanguage();
-    this.checkUser();
-  }
 
-  changeLanguage(): void {
-    this.translocoService.setActiveLang(this.selectedLanguage);
+  constructor(private authService: AuthService, private router: Router) {}
+  ngOnInit(): void {
+    this.checkUser();
   }
 
   checkUser(): void {

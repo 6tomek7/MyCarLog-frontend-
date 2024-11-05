@@ -1,0 +1,33 @@
+<div
+  [formGroup]="form"
+  class="container box"
+  *transloco="let t; prefix: 'general-settings'"
+>
+  <div class="row">
+    <div class="col">{{ t("username") }}</div>
+    <div class="col">Some name</div>
+  </div>
+  <div class="row">
+    <div class="col">{{ t("email") }}</div>
+    <div class="col">tototyajaknietytokto</div>
+  </div>
+  <div class="row">
+    <div class="col">{{ t("language") }}</div>
+    <div class="col">
+      <select formControlName="mode">
+        <option value="en">EN</option>
+        <option value="pl">PL</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">{{ t("dark-mode") }}</div>
+    <div class="col">
+      <p><mat-slide-toggle formControlName="language"></mat-slide-toggle></p>
+    </div>
+  </div>
+  <button (click)="saveChanges()" [disabled]="form.dirty">
+    {{ t("save-changes") }}
+  </button>
+  <button routerLink="../home">{{ t("cancel") }}</button>
+</div>

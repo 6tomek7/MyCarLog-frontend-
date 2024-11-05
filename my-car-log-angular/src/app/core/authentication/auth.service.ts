@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment';
 import { LoginModel } from '../../models/user/login.model';
 import { UserAuth } from '../../models/user/userAuth.model';
 import { RegistrationDataModel } from '../../models/user/registrationData.model';
+import { UserNewPasswordModel } from '../../models/user/user-new-password.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,8 @@ export class AuthService {
       tap((userAuth) => {
         this.setToken(userAuth.token),
           this.setUsername(userAuth.username),
-          this.loggedIn.next(true);
+          this.setUserId(userAuth.id);
+        this.loggedIn.next(true);
       })
     );
   }
@@ -32,8 +34,23 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('id');
     this.router.navigate(['/home']);
     this.loggedIn.next(false);
+  }
+
+  updatePassword(data: UserNewPasswordModel): Observable<UserAuth> {
+    return this.http
+      .put<UserAuth>(`${this.url}/auth/update-password`, data)
+      .pipe(
+        tap((userAuth) => {
+          this.setToken(userAuth.token),
+            this.setUsername(userAuth.username),
+            this.setUserId(userAuth.id);
+          this.loggedIn.next(true);
+        })
+      );
   }
 
   get isLoggedIn(): Observable<boolean> {
@@ -48,12 +65,20 @@ export class AuthService {
     localStorage.setItem('username', username);
   }
 
+  private setUserId(userId: number): void {
+    localStorage.setItem('id', userId.toString());
+  }
+
   getToken(): string | null {
     return localStorage.getItem('token');
   }
 
   getUsername(): string | null {
     return localStorage.getItem('username');
+  }
+
+  getUserId(): string | null {
+    return localStorage.getItem('id');
   }
 
   hasToken(): boolean {

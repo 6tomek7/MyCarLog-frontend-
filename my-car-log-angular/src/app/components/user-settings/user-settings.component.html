@@ -1,0 +1,14 @@
+<div *transloco="let t; prefix: 'user-settings'">
+  <h2 class="text-center">{{ t("settings") | uppercase }}</h2>
+  <mat-tab-group>
+    <mat-tab [label]="t('general')">
+      <app-general-settings [details]="userDetails"></app-general-settings
+    ></mat-tab>
+    <mat-tab [label]="t('security')">
+      <app-security-settings></app-security-settings>
+    </mat-tab>
+    <mat-tab [label]="t('additional')"
+      ><app-additional-settings></app-additional-settings>
+    </mat-tab>
+  </mat-tab-group>
+</div>

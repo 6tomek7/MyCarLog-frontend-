@@ -11,7 +11,6 @@ import { RegistrationDataModel } from '../../models/user/registrationData.model'
 import { CommonModule } from '@angular/common';
 import { confirmPasswordValidator } from '../../shared/validators/confirm-password.validator';
 import { Router } from '@angular/router';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Subject, takeUntil } from 'rxjs';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { AuthService } from '../../core/authentication/auth.service';
@@ -24,7 +23,6 @@ import { AuthService } from '../../core/authentication/auth.service';
     MatFormFieldModule,
     ReactiveFormsModule,
     CommonModule,
-    MatProgressBarModule,
     TranslocoDirective,
   ],
   templateUrl: './registration.component.html',
@@ -32,8 +30,6 @@ import { AuthService } from '../../core/authentication/auth.service';
 })
 export class RegistrationComponent implements OnDestroy {
   private ngUnsubscribe = new Subject();
-
-  loading = false;
 
   usernameValidators = { minLength: 5, maxLength: 25 };
   passwordValidators = { minLength: 8, maxLength: 25 };
@@ -74,18 +70,14 @@ export class RegistrationComponent implements OnDestroy {
       email: this.email.value as string,
     };
 
-    this.loading = true;
-
     this.authService
       .signUp(registrationDataModel)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: () => {
           this.router.navigate(['/home']);
-          this.loading = false;
         },
         error: (err) => {
-          this.loading = false;
           err.error.message === 'Username already exists' &&
             this.username.setErrors({ alreadyExist: true });
 

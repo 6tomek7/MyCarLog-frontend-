@@ -1,20 +1,68 @@
 {
   "top-bar": {
-    "sign-in": "Sign in",
-    "sign-up": "Sign up",
-    "logout": "Logout",
-    "settings": "Settings"
+    "sign-in": "sign in",
+    "sign-up": "sign up",
+    "logout": "logout",
+    "settings": "settings"
   },
   "login": {
-    "sign-in": "Sign in",
+    "sign-in": "sign in",
     "username": "username",
-    "password": "password"
+    "password": "password",
+    "wrong-user": "wrong-user",
+    "wrong-password": "wrong-password"
   },
   "registration": {
-    "sign-up": "Sign up",
+    "sign-up": "sign up",
     "username": "username",
     "password": "password",
     "email": "email",
-    "confirm-password": "confirm password"
+    "confirm-password": "confirm password",
+    "username-already-exist": "username already exist",
+    "max-length-for-username": "max length for username is",
+    "min-length-for-username": "min length for username is",
+    "max-length-for-password": "max length for password is",
+    "min-length-for-password": "min length for password is",
+    "invalid-email": "invalid email",
+    "email-already-exist": "email already exist",
+    "password-pattern": "password should contain one lowercas, one uppercase and special sign",
+    "passwords-are-not-match": "passwords are not match"
+  },
+  "general-settings": {
+    "username": "username",
+    "email": "email",
+    "language": "language",
+    "dark-mode": "dark mode",
+    "save-changes": "save-changes",
+    "cancel": "cancel"
+  },
+  "security-settings": {
+    "password": "password",
+    "change-password": "change password"
+  },
+  "password-change": {
+    "password-change": "password change",
+    "new-password": "new password",
+    "old-password": "old password",
+    "wrong-password": "wrong password",
+    "confirm-password": "confirm password",
+    "update-password": "update password",
+    "max-length-for-password": "max length for password is",
+    "min-length-for-password": "min length for password is",
+    "password-pattern": "password should contain one lowercas, one uppercase and special sign",
+    "passwords-are-not-match": "passwords are not match"
+  },
+  "user-settings": {
+    "settings": "settings",
+    "general": "general",
+    "security": "security",
+    "additional": "additional"
+  },
+  "additional-settings": {
+    "birthday": "birthday",
+    "select": "select",
+    "choose-a-date": "choose a date",
+    "gender": "gender",
+    "country": "country"
   }
 }
