@@ -11,7 +11,6 @@ import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslocoDirective } from '@jsverse/transloco';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AuthService } from '../../core/authentication/auth.service';
 
 @Component({
@@ -23,13 +22,11 @@ import { AuthService } from '../../core/authentication/auth.service';
     MatInputModule,
     CommonModule,
     TranslocoDirective,
-    MatProgressBarModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  loading = false;
   login = new FormControl('', Validators.required);
   password = new FormControl('', Validators.required);
 
@@ -45,18 +42,14 @@ export class LoginComponent {
       password: this.password.value as string,
     };
 
-    this.loading = true;
-
     this.authService.login(login).subscribe({
       next: () => {
         this.router.navigate(['/home']);
-        this.loading = false;
       },
       error: (err) => {
         err.error.message === 'Invalid password'
           ? this.password.setErrors({ notMatch: true })
           : this.login.setErrors({ notExist: true });
-        this.loading = false;
       },
     });
   }
