@@ -5,6 +5,9 @@ import { GeneralSettingsComponent } from './general-settings/general-settings.co
 import { AdditionalSettingsComponent } from './additional-settings/additional-settings.component';
 import { UserService } from '../../services/user.service';
 import { TranslocoDirective } from '@jsverse/transloco';
+import { UserDetailsModel } from '../../models/user/userDetails.model';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user-settings',
@@ -15,16 +18,23 @@ import { TranslocoDirective } from '@jsverse/transloco';
     GeneralSettingsComponent,
     AdditionalSettingsComponent,
     TranslocoDirective,
+    ReactiveFormsModule,
+    CommonModule,
   ],
   templateUrl: './user-settings.component.html',
   styleUrl: './user-settings.component.scss',
 })
 export class UserSettingsComponent implements OnInit {
   userService = inject(UserService);
+  userDetails: UserDetailsModel | undefined;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUserDetails();
+  }
 
-  getUserDetails(): void {
-    this.userService.getUserDetails().subscribe(() => {});
+  private getUserDetails(): void {
+    this.userService.getUserDetails().subscribe((res) => {
+      res = this.userDetails as UserDetailsModel;
+    });
   }
 }

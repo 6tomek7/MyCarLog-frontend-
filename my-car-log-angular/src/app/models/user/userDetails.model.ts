@@ -6,6 +6,7 @@ export class UserDetailsModel {
     public language: string,
     public mode: string,
     public birthday?: Date,
-    public gender?: string
+    public gender?: string,
+    public country?: string
   ) {}
 }

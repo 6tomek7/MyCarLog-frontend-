@@ -1,14 +1,16 @@
-<div *transloco="let t; prefix: 'user-settings'">
-  <h2 class="text-center">{{ t("settings") }}</h2>
-  <mat-tab-group>
-    <mat-tab [label]="t('general')">
-      <app-general-settings></app-general-settings
-    ></mat-tab>
-    <mat-tab [label]="t('security')">
-      <app-security-settings></app-security-settings>
-    </mat-tab>
-    <mat-tab [label]="t('additional')"
-      ><app-additional-settings></app-additional-settings>
-    </mat-tab>
-  </mat-tab-group>
-</div>
+<ng-container *ngIf="userDetails">
+  <div *transloco="let t; prefix: 'user-settings'">
+    <h2 class="text-center">{{ t("settings") }}</h2>
+    <mat-tab-group>
+      <mat-tab [label]="t('general')">
+        <app-general-settings></app-general-settings
+      ></mat-tab>
+      <mat-tab [label]="t('security')">
+        <app-security-settings></app-security-settings>
+      </mat-tab>
+      <mat-tab [label]="t('additional')"
+        ><app-additional-settings></app-additional-settings>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</ng-container>
