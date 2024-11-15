@@ -9,15 +9,16 @@ import {
 import { environment } from '../../environments/environment';
 
 describe('UserService', () => {
+  const apiUrl = environment.apiUrl;
+
   let service: UserService;
   let httpTestingController: HttpTestingController;
-
-  const apiUrl = environment.apiUrl;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideHttpClient(), provideHttpClientTesting()],
     });
+
     service = TestBed.inject(UserService);
     httpTestingController = TestBed.inject(HttpTestingController);
   });
