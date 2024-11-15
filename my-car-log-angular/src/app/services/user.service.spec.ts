@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { UserService } from './user.service';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { UserDetailsModel } from '../models/user/user-details.model';
 import {
   HttpTestingController,
@@ -10,8 +10,7 @@ import { environment } from '../../environments/environment';
 
 describe('UserService', () => {
   let service: UserService;
-  let httpClientSpy: jasmine.SpyObj<HttpClient>;
-  let httpTesting: HttpTestingController;
+  let httpTestingController: HttpTestingController;
 
   const apiUrl = environment.apiUrl;
 
@@ -20,12 +19,11 @@ describe('UserService', () => {
       providers: [provideHttpClient(), provideHttpClientTesting()],
     });
     service = TestBed.inject(UserService);
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
-    httpTesting = TestBed.inject(HttpTestingController);
+    httpTestingController = TestBed.inject(HttpTestingController);
   });
 
   afterEach(() => {
-    httpTesting.verify();
+    httpTestingController.verify();
   });
 
   it('should be created', () => {
@@ -44,7 +42,7 @@ describe('UserService', () => {
       done();
     });
 
-    const req = httpTesting.expectOne(`${apiUrl}/user/${userId}`);
+    const req = httpTestingController.expectOne(`${apiUrl}/user/${userId}`);
     req.flush(mockUserDetails);
 
     expect(req.request.method).toBe('GET');
