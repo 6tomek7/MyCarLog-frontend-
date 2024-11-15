@@ -4,8 +4,8 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { LoginModel } from '../../models/user/login.model';
-import { UserAuth } from '../../models/user/userAuth.model';
-import { RegistrationDataModel } from '../../models/user/registrationData.model';
+import { UserAuth } from '../../models/user/user-auth.model';
+import { RegistrationDataModel } from '../../models/user/registration-data.model';
 import { UserNewPasswordModel } from '../../models/user/user-new-password.model';
 
 @Injectable({

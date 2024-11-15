@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserSettingsComponent } from './user-settings.component';
+import { provideHttpClient } from '@angular/common/http';
+import { UserService } from '../../services/user.service';
+import { getTranslocoModule } from '../../core/unit-tests/transloco-testing.module';
 
 describe('UserSettingsComponent', () => {
   let component: UserSettingsComponent;
@@ -8,9 +11,9 @@ describe('UserSettingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserSettingsComponent]
-    })
-    .compileComponents();
+      imports: [UserSettingsComponent, getTranslocoModule()],
+      providers: [provideHttpClient()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(UserSettingsComponent);
     component = fixture.componentInstance;

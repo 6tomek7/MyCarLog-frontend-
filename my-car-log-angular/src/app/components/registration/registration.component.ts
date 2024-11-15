@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { RegistrationDataModel } from '../../models/user/registrationData.model';
+import { RegistrationDataModel } from '../../models/user/registration-data.model';
 import { CommonModule } from '@angular/common';
 import { confirmPasswordValidator } from '../../shared/validators/confirm-password.validator';
 import { Router } from '@angular/router';
