@@ -1,6 +1,5 @@
 export class UpdatingUserDetailsModel {
   constructor(
-    public id?: number,
     public username?: string,
     public email?: string,
     public language?: string,

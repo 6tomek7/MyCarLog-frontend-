@@ -1,15 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 import { UserService } from './user.service';
 import { provideHttpClient } from '@angular/common/http';
-import { UserDetailsModel } from '../models/user/user-details.model';
 import {
   HttpTestingController,
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { environment } from '../../environments/environment';
+import { UserDetailsModel } from '../models/user/user-details.model';
+import { UpdatingUserDetailsModel } from '../models/user/updating-user-details.model';
 
 describe('UserService', () => {
-  const apiUrl = environment.apiUrl;
+  const url = environment.apiUrl;
+  const userId = '12';
+  const userDetailsModel = { username: 'mockUsername' } as UserDetailsModel;
 
   let service: UserService;
   let httpTestingController: HttpTestingController;
@@ -19,35 +22,47 @@ describe('UserService', () => {
       providers: [provideHttpClient(), provideHttpClientTesting()],
     });
 
-    service = TestBed.inject(UserService);
     httpTestingController = TestBed.inject(HttpTestingController);
+    service = TestBed.inject(UserService);
   });
 
   afterEach(() => {
     httpTestingController.verify();
   });
 
-  it('should be created', () => {
+  it('service should be created', () => {
     expect(service).toBeTruthy();
   });
 
   it('should get user details', (done) => {
-    const userId = '123';
-    const mockUserDetails = { username: 'MockUserName' } as UserDetailsModel;
-
     spyOn(localStorage, 'getItem').and.returnValue(userId);
     spyOn(service.updatedUserDetails, 'next');
 
-    service.getUserDetails().subscribe((userDetails) => {
-      expect(userDetails).toEqual(mockUserDetails);
+    service.getUserDetails().subscribe((res) => {
+      expect(res).toEqual(userDetailsModel);
       done();
     });
 
-    const req = httpTestingController.expectOne(`${apiUrl}/user/${userId}`);
-    req.flush(mockUserDetails);
+    const req = httpTestingController.expectOne(`${url}/user/${userId}`);
+    req.flush(userDetailsModel);
 
     expect(req.request.method).toBe('GET');
-    expect(service.userDetails).toEqual(mockUserDetails);
     expect(service.updatedUserDetails.next).toHaveBeenCalledWith('');
+  });
+
+  it('should update user details', (done) => {
+    const newUserDetailsMock = { gender: 'male' } as UpdatingUserDetailsModel;
+    spyOn(localStorage, 'getItem').and.returnValue(userId);
+
+    service.updateUserDetails(newUserDetailsMock).subscribe((res) => {
+      expect(res).toEqual(userDetailsModel);
+      done();
+    });
+
+    const req = httpTestingController.expectOne(`${url}/user/${userId}`);
+    req.flush(userDetailsModel);
+
+    expect(req.request.body).toEqual(newUserDetailsMock);
+    expect(req.request.method).toBe('PUT');
   });
 });
