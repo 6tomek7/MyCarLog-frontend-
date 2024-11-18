@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
-import { UserDetailsModel } from '../models/user/userDetails.model';
-import { EventEmitter } from 'stream';
+import { Observable, Subject, tap } from 'rxjs';
+import { UserDetailsModel } from '../models/user/user-details.model';
+import { UpdatingUserDetailsModel } from '../models/user/updating-user-details.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,6 @@ export class UserService {
 
   updatedUserDetails = new Subject();
 
-  //mozna tego uzyc jako wartosc wspolna pomiedzy komponentami dziecka
   userDetails = {};
 
   constructor(private http: HttpClient) {}
@@ -28,7 +27,9 @@ export class UserService {
     );
   }
 
-  updateUserDetails(newUserDetails: UserDetailsModel): Observable<any> {
+  updateUserDetails(
+    newUserDetails: UpdatingUserDetailsModel
+  ): Observable<UserDetailsModel> {
     const userId = localStorage.getItem('id');
     return this.http.put<UserDetailsModel>(
       `${this.url}/user/${userId}`,

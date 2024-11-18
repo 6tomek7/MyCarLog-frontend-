@@ -3,7 +3,7 @@ import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { LanguageOptionComponent } from '../../../core/language-option/language-option.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { UserDetailsModel } from '../../../models/user/userDetails.model';
+import { UserDetailsModel } from '../../../models/user/user-details.model';
 import { UserService } from '../../../services/user.service';
 
 @Component({

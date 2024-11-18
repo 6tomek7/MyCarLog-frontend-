@@ -5,7 +5,7 @@ import { GeneralSettingsComponent } from './general-settings/general-settings.co
 import { AdditionalSettingsComponent } from './additional-settings/additional-settings.component';
 import { UserService } from '../../services/user.service';
 import { TranslocoDirective } from '@jsverse/transloco';
-import { UserDetailsModel } from '../../models/user/userDetails.model';
+import { UserDetailsModel } from '../../models/user/user-details.model';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
