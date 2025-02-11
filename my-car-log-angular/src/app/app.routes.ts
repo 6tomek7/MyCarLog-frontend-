@@ -16,7 +16,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'home',
+    path: '',
     loadComponent: () =>
       import('./components/home/home.component').then((c) => c.HomeComponent),
   },
